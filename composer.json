@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "jlapp/swaggervel": "dev-master",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "barryvdh/laravel-cors": "0.7.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
