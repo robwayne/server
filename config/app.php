@@ -146,6 +146,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
 
 
+
     ],
 
     /*
