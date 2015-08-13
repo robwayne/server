@@ -14,9 +14,17 @@ class LocationsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index($location)
     {
-        return 'Locations route works.';
+        // These code snippets use an open-source library.
+        $response = Unirest/Request::get("https://george-vustrey-weather.p.mashape.com/api.php?location=$location",
+            array(
+                "X-Mashape-Key" => "7ZSGvTNF31mshN6aI8SYne2fmGq4p1fhetVjsnjJcq3X5ixEl3",
+                "Accept" => "application/json"
+            )
+        );
+
+        return $response;
     }
 
     /**

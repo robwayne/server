@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "jlapp/swaggervel": "dev-master",
         "laravel/framework": "5.1.*",
-        "barryvdh/laravel-cors": "0.7.x"
+        "barryvdh/laravel-cors": "0.7.x",
+        "guzzle/guzzle": "^3.9"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
