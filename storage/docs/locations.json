@@ -1,0 +1,36 @@
+{
+    "basePath": "/",
+    "swaggerVersion": "2.0",
+    "apiVersion": "1.0",
+    "resourcePath": "/locations",
+    "apis": [
+        {
+            "path": "/locations/{location_name}",
+            "description": "Displays a list of all the locations returned by the API called",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "GETs a listing of all locations",
+                    "nickname": "index",
+                    "type": "Locations",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "location_name",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Name of location to query"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "OK"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
