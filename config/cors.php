@@ -7,7 +7,7 @@ return [
      |--------------------------------------------------------------------------
      |
 
-     | allowedOrigins, allowedHeaders and allowedMethods can be set to array('*') 
+     | allowedOrigins, allowedHeaders and allowedMethods can be set to array('*')
      | to accept any value, the allowed methods however have to be explicitly listed.
      |
      */
@@ -16,7 +16,6 @@ return [
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
-    'maxAge' => 0,
+    'maxAge' => 3600,
     'hosts' => [],
 ];
-
