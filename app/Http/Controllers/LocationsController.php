@@ -6,11 +6,40 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Mashape\Unirest;
+use Swagger\Annotations as SWG;
+
+/**
+ * @SWG\Resource(
+ *      swaggerVersion="2.0",
+ *      apiVersion="1.0",
+ *      resourcePath="/locations",
+ *      basePath="/"
+ *  )
+ *
+ */
 
 class LocationsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @SWG\Api(
+     *      path="/locations/{location_name}",
+     *      description="Displays a list of all the locations returned by the API called",
+     *      @SWG\Operation(
+     *          method="GET",
+     *          summary="GETs a listing of all locations",
+     *          type="Locations",
+     *          @SWG\Parameter(
+     *              name="location_name",
+     *              description="Name of location to query",
+     *              paramType="path",
+     *              required=true,
+     *              allowMultiple=false,
+     *              type="string",
+     *          ),
+     *          @SWG\ResponseMessage(code=200, message="OK")
+     *      )
+     *  )
      *
      * @return Response
      */

@@ -1,5 +1,10 @@
 {
     "apiVersion": "",
-    "swaggerVersion": "1.2",
-    "apis": []
+    "swaggerVersion": "2.0",
+    "apis": [
+        {
+            "path": "/locations",
+            "description": "Displays a list of all the locations returned by the API called"
+        }
+    ]
 }
