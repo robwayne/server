@@ -81,7 +81,6 @@ return [
     'key' => env('APP_KEY', 'syms5fogG1eI5yNY3pRr1vA3jmBgh6N1'),
 
     'cipher' => 'AES-256-CBC',
-
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
@@ -142,7 +141,11 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        Jlapp\Swaggervel\SwaggervelServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+
+
 
     ],
 
