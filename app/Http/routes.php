@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/locations/{location_name}', 'LocationsController@index');
+Route::get('/locations/{query}', 'LocationsController@show');
+Route::get('/locations', 'LocationsController@index');

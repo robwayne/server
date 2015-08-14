@@ -5,18 +5,18 @@
     "resourcePath": "/locations",
     "apis": [
         {
-            "path": "/locations/{location_name}",
+            "path": "/locations/{query}",
             "description": "Displays a list of all the locations returned by the API called",
             "operations": [
                 {
                     "method": "GET",
                     "summary": "GETs a listing of all locations",
-                    "nickname": "index",
+                    "nickname": "show",
                     "type": "Locations",
                     "parameters": [
                         {
                             "paramType": "path",
-                            "name": "location_name",
+                            "name": "query",
                             "type": "string",
                             "required": true,
                             "allowMultiple": false,

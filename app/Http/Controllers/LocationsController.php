@@ -22,53 +22,15 @@ use Guzzle\Http\Client;
 
 class LocationsController extends Controller
 {
+
     /**
-     * @SWG\Api(
-     *      path="/locations/{location_name}",
-     *      description="Displays a list of all the locations returned by the API called",
-     *      @SWG\Operation(
-     *          method="GET",
-     *          summary="GETs a listing of all locations",
-     *          type="Locations",
-     *          @SWG\Parameter(
-     *              name="location_name",
-     *              description="Name of location to query",
-     *              paramType="path",
-     *              required=true,
-     *              allowMultiple=false,
-     *              type="string",
-     *          ),
-     *          @SWG\ResponseMessage(code=200, message="OK")
-     *      )
-     *  )
+     * Display the Response.
      *
      * @return Response
      */
-    public function index($query)
+    public function index()
     {
-        // These code snippets use an open-source library.
-        $KEY = env('API_KEY');
-        $client = new Client();
-
-        //Checks if query String has spaces and parses it to correct format i.e 'string1+string2'
-        $query = $this->parseQuery($query);
-
-        $region = 'jm';
-        $response = $client
-                    ->get("https://maps.googleapis.com/maps/api/geocode/json?address=$query&key=$KEY&region=$region&components=country:JM")
-                    ->send();
-        $status = $response->getStatusCode();
-        if ($status === 200)
-        {
-            $data = json_encode($response->json(), JSON_PRETTY_PRINT);
-            return response($data, 200)->header('Content-Type', 'application/json');
-        }
-        else
-        {
-            $data = json_encode(['message' => 'RouteJA encountered errors searching for that location.']);
-            return response($data, 400)->header('Content-Type', 'application/json');
-        }
-
+        //
     }
 
     /**
@@ -92,15 +54,54 @@ class LocationsController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+
+     /**
+      * @SWG\Api(
+      *      path="/locations/{query}",
+      *      description="Displays a list of all the locations returned by the API called",
+      *      @SWG\Operation(
+      *          method="GET",
+      *          summary="GETs a listing of all locations",
+      *          type="Locations",
+      *          @SWG\Parameter(
+      *              name="query",
+      *              description="Name of location to query",
+      *              paramType="path",
+      *              required=true,
+      *              allowMultiple=false,
+      *              type="string",
+      *          ),
+      *          @SWG\ResponseMessage(code=200, message="OK")
+      *      )
+      *  )
+      *
+      * @param  string  $query
+      * @return Response
+      */
+    public function show($query)
     {
-        //
+        // These code snippets use an open-source library.
+        $KEY = env('API_KEY');
+        $client = new Client();
+
+        //Checks if query String has spaces and parses it to correct format i.e 'string1+string2'
+        $query = $this->parseQuery($query);
+
+        $region = 'jm';
+        $response = $client
+                    ->get("https://maps.googleapis.com/maps/api/geocode/json?address=$query&key=$KEY&region=$region&components=country:JM")
+                    ->send();
+        $status = $response->getStatusCode();
+        if ($status === 200)
+        {
+            $data = json_encode($response->json(), JSON_PRETTY_PRINT);
+            return response($data, 200)->header('Content-Type', 'application/json');
+        }
+        else
+        {
+            $data = json_encode(['message' => 'RouteJA encountered errors searching for that location.']);
+            return response($data, 400)->header('Content-Type', 'application/json');
+        }
     }
 
     /**
