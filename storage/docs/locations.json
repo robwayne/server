@@ -5,6 +5,24 @@
     "resourcePath": "/locations",
     "apis": [
         {
+            "path": "/locations",
+            "description": "Returns the current location of user based on IP address of the request that is sent.",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Gets current location information of user",
+                    "nickname": "index",
+                    "type": "Locations",
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "OK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "path": "/locations/{query}",
             "description": "Displays a list of all the locations returned by the API called",
             "operations": [

@@ -24,13 +24,28 @@ class LocationsController extends Controller
 {
 
     /**
-     * Display the Response.
+     * @SWG\Api(
+     *  path="/locations",
+     *  description="Returns the current location of user based on IP address of the request that is sent.",
+     *  @SWG\Operation(
+     *      method="GET",
+     *      summary="Gets current location information of user",
+     *      type="Locations",
+     *      @SWG\ResponseMessage(code=200, message="OK")
+     *  )
+     * )
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clientIp = $request->getClientIp();
+        $guzzle = new Client();
+
+        $response = $guzzle->get("http://freegeoip.net/json/$clientIp")->send();
+        $data = json_encode($response->json(), JSON_PRETTY_PRINT);
+
+        return response($data, 200)->header('Content-Type', 'application/json');
     }
 
     /**

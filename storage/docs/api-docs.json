@@ -4,7 +4,7 @@
     "apis": [
         {
             "path": "/locations",
-            "description": "Displays a list of all the locations returned by the API called"
+            "description": "Returns the current location of user based on IP address of the request that is sent."
         }
     ]
 }
