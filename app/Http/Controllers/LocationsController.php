@@ -50,16 +50,25 @@ class LocationsController extends Controller
         $KEY = env('API_KEY');
         $client = new Client();
 
+        //Checks if query String has spaces and parses it to correct format i.e 'string1+string2'
+        $query = $this->parseQuery($query);
+
         $region = 'jm';
         $response = $client
                     ->get("https://maps.googleapis.com/maps/api/geocode/json?address=$query&key=$KEY&region=$region&components=country:JM")
                     ->send();
         $status = $response->getStatusCode();
         if ($status === 200)
-            $data = $response->json();
+        {
+            $data = json_encode($response->json(), JSON_PRETTY_PRINT);
+            return response($data, 200)->header('Content-Type', 'application/json');
+        }
         else
-            $data = ['message' => 'RouteJA encountered errors searching for that location.'];
-        return $data;
+        {
+            $data = json_encode(['message' => 'RouteJA encountered errors searching for that location.']);
+            return response($data, 400)->header('Content-Type', 'application/json');
+        }
+
     }
 
     /**
@@ -126,5 +135,28 @@ class LocationsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    //Checks if query String has spaces and replaces spaces with '+'
+    public function  parseQuery($query)
+    {
+        if(strpos($query, ' '))
+        {
+            $queryArr = explode(' ', $query); //creates an array of the strings seperated by spaces
+            $count = count($queryArr);
+            $query = ""; //unsets the string to remake it with
+            for($i=0;$i<$count;$i++)
+            {
+                $query = $query.$queryArr[$i];
+                //bruteforce way of avoiding extra + at end of string i.e "Half+Way+Tree+"
+                if($i==$count - 1)
+                {
+                    break;
+                }
+                $query = $query.'+';
+            }
+        }
+        return $query;
     }
 }
