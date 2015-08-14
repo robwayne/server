@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Swagger\Annotations as SWG;
+require_once '/vendor/autoload.php';
+require_once '/path/to/unirest-php/src/Unirest.php';
 
 /**
  * @SWG\Resource(
