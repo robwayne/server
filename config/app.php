@@ -80,6 +80,8 @@ return [
 
     'key' => env('APP_KEY', 'syms5fogG1eI5yNY3pRr1vA3jmBgh6N1'),
 
+    'API_KEY' => 'AIzaSyAHNKCSesjxtYJWQcDY7ugDgyhoK13nilM',
+
     'cipher' => 'AES-256-CBC',
     /*
     |--------------------------------------------------------------------------
