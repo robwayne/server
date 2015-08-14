@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Swagger\Annotations as SWG;
-require_once '/vendor/autoload.php';
-require_once '/path/to/unirest-php/src/Unirest.php';
+require (base_path('vendor/autoload.php'));
+use Guzzle\Http\Client;
 
 /**
  * @SWG\Resource(
@@ -44,17 +44,22 @@ class LocationsController extends Controller
      *
      * @return Response
      */
-    public function index($location)
+    public function index($query)
     {
         // These code snippets use an open-source library.
-        $response = Unirest/Request::get("https://george-vustrey-weather.p.mashape.com/api.php?location=$location",
-            array(
-                "X-Mashape-Key" => "7ZSGvTNF31mshN6aI8SYne2fmGq4p1fhetVjsnjJcq3X5ixEl3",
-                "Accept" => "application/json"
-            )
-        );
+        $KEY = env('API_KEY');
+        $client = new Client();
 
-        return $response;
+        $region = 'jm';
+        $response = $client
+                    ->get("https://maps.googleapis.com/maps/api/geocode/json?address=$query&key=$KEY&region=$region&components=country:JM")
+                    ->send();
+        $status = $response->getStatusCode();
+        if ($status === 200)
+            $data = $response->json();
+        else
+            $data = ['message' => 'RouteJA encountered errors searching for that location.'];
+        return $data;
     }
 
     /**
